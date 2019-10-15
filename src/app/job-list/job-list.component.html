@@ -1,0 +1,15 @@
+<div class="card mb-3" *ngFor="let job of jobs">
+    <div class="card-header bg-card-header font-clear">
+        <h3 class="card-title"><a href="#" [routerLink]="['/jobs', job.id]">{{ job.title }}</a></h3>
+        <p class="card-text">{{ job.company }} - {{ job.city }} - {{ job.zipcode }}</p>
+    </div>
+    <div class="card-body">
+        <p class="card-text"> {{ job.description }} </p>
+    </div>
+    <div class="card-footer text-muted  bg-card-footer">
+        parue il y a {{ job.publishdate | daysAgo }}
+    </div>
+    
+</div>
+
+

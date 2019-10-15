@@ -1,0 +1,37 @@
+<h3>Mon profil</h3>
+<div *ngIf="decodedToken">
+    <pre class="alert alert-secondary">
+        {{ decodedToken | json }}
+    </pre>
+</div>
+
+<div *ngIf="!decodedToken">
+    <pre class="alert alert-danger">
+        Aucune donnée trouvée
+    </pre>
+</div>
+
+<div *ngIf="isAdmin">
+    <h2>Profil de {{ decodedToken.nickname }}</h2>
+    <div *ngFor="let job of jobs">
+        <strong>{{ job.title }}</strong>
+        - publiée il y a {{ job.publishdate | daysAgo }}
+        - mise à jour il y a {{ job.lastupdate | daysAgo }}
+        <div>
+            {{ job.description | truncate }}
+        </div>
+    </div>
+    
+</div>
+
+<div *ngIf="!isAdmin">
+    <h2>Profil de {{ decodedToken.nickname }}</h2>
+    <div *ngFor="let job of jobs">
+        <strong>{{ job.title }}</strong>
+        - publiée il y a {{ job.publishdate | daysAgo }}
+        - mise à jour il y a {{ job.lastupdate | daysAgo }}
+        <div>
+            {{ job.description | truncate }}
+        </div>
+    </div>
+</div>

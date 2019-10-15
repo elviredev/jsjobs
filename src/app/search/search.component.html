@@ -1,0 +1,23 @@
+<form #searchForm="ngForm" (ngSubmit)="searchJobs(searchForm.value)" class="form-inline my-2 my-lg-0">
+    <input type="search"
+            ngModel
+            class="form-control mr-sm-2"
+            name="term"
+            placeholder="Angular, React, Node ..."
+            required>
+
+    <input type="search"
+            ngModel
+            class="form-control mr-sm-2"
+            name="place"
+            placeholder="Rennes, Brest ...">
+    <button type="submit" class="btn btn-outline-success my-2 my-sm-0" [disabled]="searchForm.invalid">Chercher</button>
+</form>
+
+
+
+
+
+
+
+

@@ -1,0 +1,106 @@
+<div class="container" *ngIf="userIsLoggedIn">
+    <form [formGroup]="form" (ngSubmit)="createJob(form.value)">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="title">Titre</label>
+                <input type="text"
+                       name="title"
+                       class="form-control"
+                       placeholder="titre de votre annonce"
+                       formControlName="title">
+    
+                <label for="company">Entreprise</label>
+                <input type="text"
+                       name="company"
+                       class="form-control"
+                       placeholder="nom de votre entreprise"
+                       formControlName="company">
+    
+                <label for="city">Ville</label>
+                <input type="text"
+                        name="city"
+                        class="form-control"
+                        placeholder="ville du poste proposé"
+                        formControlName="city">
+    
+                <label for="zipcode">Code postal</label>
+                <input type="text"
+                        name="zipcode"
+                        class="form-control"
+                        placeholder="code postal"
+                        formControlName="zipcode">
+                
+                <label for="salary">Salaire</label>
+                <input type="text"
+                        name="salary"
+                        class="form-control currency mb-2"
+                        placeholder="salaire"
+                        formControlName="salary">
+                <select name="currency"  class="form-control currency" formControlName="currency">
+                    <option *ngFor="let cur of currencies" [value]="cur.value">{{cur.name}}</option>
+                </select>
+            
+                <label for="experience">Expérience</label>    
+                <select name="experience" class="form-control experience" formControlName="experience">
+                    <option *ngFor="let exp of experience" [value]="exp.value">{{exp.name}}</option>
+                </select> 
+                <label for="status">Statut</label>          
+                <select name="status" class="form-control experience" formControlName="status">
+                    <option *ngFor="let status of statuses" [value]="status.value">{{status.name}}</option>
+                </select>                     
+    
+            </div>
+           <!--  description et types de contrat -->
+            <div class="form-group col-md-6">
+                <label for="description">Description</label>
+                <textarea name="description" id="description"  class="form-control" rows="10" formControlName="description"></textarea>
+                        
+                <label for="contract">Contrat</label>
+                <select class="form-control" name="contract" formControlName="contract">
+                    <option *ngFor="let ct of contractTypes" [value]="ct.value">{{ct.name}}</option>
+                </select>
+                
+                <!-- boutons radios pour les déplacements : areas -->
+                <div class="form-check mt-3">
+                    <label for="area">Déplacements</label>
+
+                    <div *ngFor="let area of areas">
+                        <input class="form-check-input"
+                               type="radio"
+                               [id]='"btn-" + area.value'
+                               name="area"
+                               [value]="area.value"
+                               formControlName="area">
+                        <label [for]='"btn-" + area.value'>{{area.name}}</label>
+                    </div>
+
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="startdate">Date de démarrage</label>
+                    <input type="date"
+                           name="startdate"
+                           class="form-control"
+                           formControlName="startdate">
+                </div>
+                    
+            </div>          
+            
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn bg-cobalt font-clear">Créer l'annonce</button>
+        </div>
+        
+    </form>
+</div>
+
+<div *ngIf="!userIsLoggedIn">
+    <h2>Création d'annonces réservée aux utilisateurs inscrits</h2>
+    <div>
+        Vous devez être connecté pour créer une annonce.
+        <br>
+        <a href="#" routerLink="/login">Se connecter</a> ou 
+        <a href="#" routerLink="/register">Créer un compte</a>
+    </div>
+
+</div>

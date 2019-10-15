@@ -1,0 +1,30 @@
+<div *ngIf="!isAuthenticated">
+    <h3>Se connecter</h3>
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" class="form-inline my-2 my-lg-0">
+        <input type="email"
+            class="form-control mr-sm-2 mt-2"
+            ngModel
+            name="email"
+            placeholder="email"
+            required>
+        <input type="password"
+            class="form-control mr-sm-2 mt-2"
+            ngModel
+            name="password"
+            placeholder="mot de passe"
+            required>
+        <button type="submit" class="btn btn-outline-success mt-2" [disabled]="loginForm.invalid">Se connecter</button>
+    </form>
+</div>
+
+<div *ngIf="isAuthenticated">
+    {{ welcomeMessage }}
+    <pre class="alert alert-secondary" >
+        {{ jbbData | json }}
+    </pre>
+</div>
+
+
+
+
+    

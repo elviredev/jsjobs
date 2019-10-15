@@ -1,0 +1,36 @@
+<div *ngIf="jobDetails">
+   <div class="card mt-3">
+    <div class="card-header bg-card-header ">
+        <h3 class="card-title font-cobalt">{{ jobDetails.title }}</h3>
+    </div>
+        <div class="card-body">
+            <p class="card-text"> {{ jobDetails.company }} </p>
+            <p class="card-text"> {{ jobDetails.city }} - {{ jobDetails.zipcode }} </p>
+            <p class="card-text"> {{ jobDetails.contract }} </p>
+            <hr>
+            publié le {{ jobDetails.publishdate | toShortDate }} <br>
+            actualisé le {{ jobDetails.lastupdate | toShortDate }} <br>
+            salaire : {{ jobDetails.salary }} {{ jobDetails.currency | toMoneySymbol }} <br>
+            <hr>
+            <b>Descriptif du poste</b>
+            <div>
+                {{ jobDetails.description }}
+            </div>
+            <hr>
+            <div>
+                date de démarrage : {{ jobDetails.startdate | toShortDate }} <br>
+                statut : {{ jobDetails.status }} - déplacement : {{ jobDetails.area }}
+            </div>
+        </div>
+   </div>
+</div>
+
+<div *ngIf="errorMessage">
+   Désolé {{ errorMessage }}
+</div>
+
+<div *ngIf="error">
+    <pre>{{ error | json }}</pre>
+ </div>
+
+ 
